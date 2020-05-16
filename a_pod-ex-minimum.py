@@ -1,4 +1,13 @@
+import datetime
+from airflow import models
+from airflow.contrib.operators import kubernetes_pod_operator
 
+YESTERDAY = datetime.datetime.now() - datetime.timedelta(days=1)
+dag=models.DAG(
+            dag_id='a_pod-ex-minimum',
+            schedule_interval=datetime.timedelta(days=1),
+            start_date=YESTERDAY) 
+        
 kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # The ID specified for the task.
         task_id='pod-ex-minimum',
@@ -13,7 +22,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # the recommended solution is to increase the amount of nodes in order
         # to satisfy the computing requirements. Alternatively, launching pods
         # into a custom namespace will stop fighting over resources.
-        namespace='default',
+        namespace='airflow',
         # Docker image specified. Defaults to hub.docker.com, but any fully
         # qualified URLs will point to a custom repository. Supports private
         # gcr.io images if the Composer Environment is under the same
