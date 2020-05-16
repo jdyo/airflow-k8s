@@ -29,4 +29,4 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # project-id as the gcr.io images and the service account that Composer
         # uses has permission to access the Google Container Registry
         # (the default service account has permission)
-        image='gcr.io/gcp-runtimes/ubuntu_18_0_4')
+        image='ubuntu:16.04')
