@@ -13,7 +13,7 @@ volume_mount = VolumeMount('test-volume',
                             sub_path=None,
                             read_only=True)
 port = Port('http', 80)
-configmaps = ['test-configmap-1', 'test-configmap-2']
+configmaps = ['airflow-env', 'airflow-git-clone','airflow-redis','airflow-redis-health','airflow-scripts','airflow-variables-pools']
 
 volume_config= {
     'persistentVolumeClaim':
@@ -80,7 +80,7 @@ tolerations = [
      }
 ]
 
-k = KubernetesPodOperator(namespace='default',
+k = KubernetesPodOperator(namespace='airflow',
                           image="ubuntu:16.04",
                           cmds=["bash", "-cx"],
                           arguments=["echo", "10"],
