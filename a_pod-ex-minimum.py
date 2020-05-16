@@ -12,6 +12,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # The ID specified for the task.
         task_id='pod-ex-minimum',
         # Name of task you want to run, used to generate Pod ID.
+        dag=dag,
         name='pod-ex-minimum',
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
