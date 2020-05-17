@@ -11,7 +11,9 @@ dag=models.DAG(
             start_date=YESTERDAY) 
 
 volume_mount = VolumeMount(name='mykube-volume',
-                            mount_path='/usr/local/airflow/etc/')
+                           mount_path='/usr/local/airflow/etc/',
+                           sub_path=None,
+                           read_only=True)
 
 volume_config= {
     'hostPath':
