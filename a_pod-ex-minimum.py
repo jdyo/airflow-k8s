@@ -7,6 +7,14 @@ dag=models.DAG(
             dag_id='a_pod-ex-minimum',
             schedule_interval=datetime.timedelta(days=1),
             start_date=YESTERDAY) 
+volume_config= {
+    'persistentVolumeClaim':
+      {
+        'claimName': 'mykube-claim'
+      }
+    }
+volume = Volume(name='mykube-volume', configs=volume_config)
+
         
 kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # The ID specified for the task.
