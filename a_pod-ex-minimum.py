@@ -7,6 +7,12 @@ dag=models.DAG(
             dag_id='a_pod-ex-minimum',
             schedule_interval=datetime.timedelta(days=1),
             start_date=YESTERDAY) 
+
+volume_mount = VolumeMount('mykube-volume',
+                            mount_path='/usr/local/airflow/etc/',
+                            sub_path=None,
+                            read_only=True)
+
 volume_config= {
     'persistentVolumeClaim':
       {
@@ -25,6 +31,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
         cmds=['echo'],
+        config="/usr/local/airflow/etc/config",
         # The namespace to run within Kubernetes, default namespace is
         # `default`. There is the potential for the resource starvation of
         # Airflow workers and scheduler within the Cloud Composer environment,
