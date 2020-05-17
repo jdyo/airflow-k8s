@@ -9,14 +9,12 @@ dag=models.DAG(
             start_date=YESTERDAY) 
 
 volume_mount = VolumeMount('mykube-volume',
-                            mount_path='/usr/local/airflow/etc/',
-                            sub_path=None,
-                            read_only=True)
+                            mount_path='/usr/local/airflow/etc/')
 
 volume_config= {
-    'persistentVolumeClaim':
+    'hostPath':
       {
-        'claimName': 'mykube-claim'
+        'path': '/Users/jdyo/.kube'
       }
     }
 volume = Volume(name='mykube-volume', configs=volume_config)
