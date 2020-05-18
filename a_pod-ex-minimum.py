@@ -19,7 +19,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
         cmds=['echo'],
-        config_file="/etc/kube.config",
+        config_file="/usr/local/airflow/kube.config",
         # The namespace to run within Kubernetes, default namespace is
         # `default`. There is the potential for the resource starvation of
         # Airflow workers and scheduler within the Cloud Composer environment,
