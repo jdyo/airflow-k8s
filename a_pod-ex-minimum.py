@@ -18,7 +18,7 @@ volume_mount = VolumeMount(name='mykube-volume',
 volume_config= {
     'hostPath':
       {
-        'path': '/usr/local/airflow/etc'
+        'path': '/usr/local/airflow/'
       }
     }
 volume = Volume(name='mykube-volume', configs=volume_config)
