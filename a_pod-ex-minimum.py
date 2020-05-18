@@ -9,20 +9,6 @@ dag=models.DAG(
             dag_id='a_pod-ex-minimum',
             schedule_interval=datetime.timedelta(days=1),
             start_date=YESTERDAY) 
-
-volume_mount = VolumeMount(name='mykube-volume',
-                           mount_path='/usr/local/airflow/etc/',
-                           sub_path=None,
-                           read_only=True)
-
-volume_config= {
-    'hostPath':
-      {
-        'path': '/usr/local/airflow/'
-      }
-    }
-volume = Volume(name='mykube-volume', configs=volume_config)
-
         
 kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # The ID specified for the task.
@@ -33,7 +19,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
         cmds=['echo'],
-        config_file="/usr/local/airflow/etc/config",
+        config_file="/usr/local/airflow/config",
         volumes=[volume],
         volume_mounts=[volume_mount],
         # The namespace to run within Kubernetes, default namespace is
