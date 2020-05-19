@@ -1,8 +1,6 @@
 import datetime
 from airflow import models
 from airflow.contrib.operators import kubernetes_pod_operator
-from airflow.contrib.kubernetes.volume import Volume
-from airflow.contrib.kubernetes.volume_mount import VolumeMount
 
 YESTERDAY = datetime.datetime.now() - datetime.timedelta(days=1)
 dag=models.DAG(
