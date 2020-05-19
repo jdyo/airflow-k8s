@@ -17,6 +17,6 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         dag=dag,
         name='pod-ex-minimum',
         cmds=['echo'],
-        config_file="/usr/local/airflow/dags/kube.config",
+        config_file="/usr/local/airflow/etc/kube.config",
         namespace='airflow',
         image='ubuntu:16.04')
