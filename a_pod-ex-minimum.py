@@ -16,7 +16,7 @@ kubernetes_min_pod = kubernetes_pod_operator.KubernetesPodOperator(
         name='pod-ex-minimum',
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
-        cmds=['echo'],
+        cmds=['echo','hello'],
         config_file="/var/airflow/secrets/kubeconfig/kube.config",
         # The namespace to run within Kubernetes, default namespace is
         # `default`. There is the potential for the resource starvation of
